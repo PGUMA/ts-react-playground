@@ -1,46 +1,63 @@
-# Getting Started with Create React App
+# 環境構築手順
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. Create React App
 
-## Available Scripts
+```bash
+npx create-react-app <project-name> --template typescript
+```
 
-In the project directory, you can run:
+2. ESlint 初期設定
 
-### `npm start`
+```bash
+npm init @eslint/config
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**eslint 初期導入パッケージについて**
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- @typescript-eslint/eslint-plugin … ESLint に TypeScript のルールを追加
+- @typescript-eslint/parser … ESLint で TypeScript の解析をする用
+- eslint … ESLint 本体
+- eslint-config-airbnb … ESLint に Airbnb スタイルを追加
+- eslint-plugin-import … ESLint に ES Modules のルールを追加
+- eslint-plugin-jsx-a11y … ESLint に JSX のルールを追加
+- eslint-plugin-react … ESLint に React のルールを追加
+- eslint-plugin-react-hooks … ESLint に React Hooks のルールを追加
 
-### `npm test`
+3. ESlint 追加パッケージ
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+npm i --save-dev eslint-config-airbnb-typescript
+npm i --save-dev eslint-plugin-unused-imports
+```
 
-### `npm run build`
+4. prettier 初期設定
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm i --save-dev prettier eslint-config-prettier
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- 設定ファイルの追加
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+touch .prettierrc.js
+```
 
-### `npm run eject`
+5. ESlint の非対称ファイルの追加
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+touch .eslintignore
+echo "/.eslintrc.js" >> .eslintignore
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+6. lint&フォーマット（lint fix + prettier）の実行 script の追加
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+package.json
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```json
+"lint": "eslint --ext 'src/**/*.{js,jsx,ts,tsx}'",
+"format": "eslint --cache --fix 'src/**/*.{js,jsx,ts,tsx}' && prettier --write 'src/**/*.{js,jsx,ts,tsx}'"
+```
 
-## Learn More
+# 参考
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+[URL](https://yumegori.com/vscode_react_typescript_eslint_prettier)
