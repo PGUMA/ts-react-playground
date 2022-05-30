@@ -56,6 +56,8 @@ module.exports = {
     ],
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 'off',
+    'react/no-array-index-key': 'off',
+    'react/jsx-props-no-spreading': 'off',
     'no-void': [
       'error',
       {
